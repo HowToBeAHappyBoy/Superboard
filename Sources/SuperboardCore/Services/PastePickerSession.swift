@@ -1,9 +1,10 @@
 import Combine
 import Foundation
 
-public final class PastePickerSession: ObservableObject, @unchecked Sendable {
+@MainActor
+public final class PastePickerSession: ObservableObject {
     @Published public private(set) var visibleItems: [ClipboardItem] = []
-    @Published public private(set) var selectedIndex: Int = 0
+    @Published public private(set) var selectedIndex: Int = -1
 
     public init() {}
 

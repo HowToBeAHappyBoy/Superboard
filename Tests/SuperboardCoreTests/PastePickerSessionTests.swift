@@ -1,6 +1,7 @@
 import XCTest
 @testable import SuperboardCore
 
+@MainActor
 final class PastePickerSessionTests: XCTestCase {
     func testOpenSelectsFirstItemByDefault() {
         let session = PastePickerSession()
@@ -27,5 +28,21 @@ final class PastePickerSessionTests: XCTestCase {
         session.moveSelection(by: 1)
 
         XCTAssertEqual(session.chooseSelected()?.id, "2")
+    }
+
+    func testChooseSelectedReturnsNilForEmptySession() {
+        let session = PastePickerSession()
+        session.open(with: [])
+
+        XCTAssertNil(session.chooseSelected())
+    }
+
+    func testMoveSelectionClampsToLastItem() {
+        let session = PastePickerSession()
+        session.open(with: [ClipboardItem.fixture(id: "1"), ClipboardItem.fixture(id: "2")])
+
+        session.moveSelection(by: 10)
+
+        XCTAssertEqual(session.selectedIndex, 1)
     }
 }
