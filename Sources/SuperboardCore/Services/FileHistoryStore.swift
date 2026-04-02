@@ -3,17 +3,22 @@ import Foundation
 public final class FileHistoryStore: HistoryStore, @unchecked Sendable {
     private let storageURL: URL
     private let limit: Int
-    private let lock = NSLock()
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
+    private static let lockRegistry = StorageLockRegistry()
+
+    private var storageLock: NSLock {
+        Self.lockRegistry.lock(forPath: storageURL.path)
+    }
 
     public init(storageURL: URL, limit: Int) {
+        precondition(limit >= 0, "FileHistoryStore limit must be non-negative")
         self.storageURL = storageURL
-        self.limit = max(0, limit)
+        self.limit = limit
     }
 
     public func save(item: ClipboardItem) throws {
-        try lock.withLock {
+        try storageLock.withLock {
             var items = try recentItemsUnlocked()
             items.removeAll { $0.fingerprint == item.fingerprint }
             items.insert(item, at: 0)
@@ -27,7 +32,7 @@ public final class FileHistoryStore: HistoryStore, @unchecked Sendable {
     }
 
     public func recentItems() throws -> [ClipboardItem] {
-        try lock.withLock {
+        try storageLock.withLock {
             try recentItemsUnlocked()
         }
     }
@@ -39,7 +44,30 @@ public final class FileHistoryStore: HistoryStore, @unchecked Sendable {
     }
 }
 
+private final class StorageLockRegistry: @unchecked Sendable {
+    private let registryLock = NSLock()
+    private var locks: [String: NSLock] = [:]
+
+    func lock(forPath path: String) -> NSLock {
+        registryLock.withLock {
+            if let existing = locks[path] {
+                return existing
+            }
+
+            let lock = NSLock()
+            locks[path] = lock
+            return lock
+        }
+    }
+}
+
 private extension NSLock {
+    func withLock<T>(_ body: () -> T) -> T {
+        lock()
+        defer { unlock() }
+        return body()
+    }
+
     func withLock<T>(_ body: () throws -> T) throws -> T {
         lock()
         defer { unlock() }
