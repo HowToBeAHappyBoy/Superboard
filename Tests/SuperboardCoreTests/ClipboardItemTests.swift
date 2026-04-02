@@ -41,4 +41,17 @@ final class ClipboardItemTests: XCTestCase {
 
         XCTAssertEqual(item.previewText, "2 files")
     }
+
+    func testSingleFileItemPreviewUsesLastPathComponent() {
+        let item = ClipboardItem(
+            id: "4",
+            workspaceId: Workspace.local.id,
+            capturedAt: .distantPast,
+            sourceAppID: "com.apple.finder",
+            sourceAppName: "Finder",
+            content: .files([URL(fileURLWithPath: "/tmp/folder/report.pdf")])
+        )
+
+        XCTAssertEqual(item.previewText, "report.pdf")
+    }
 }

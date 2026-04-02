@@ -9,5 +9,11 @@ public struct Workspace: Codable, Equatable, Sendable {
         case shared
     }
 
+    public init(id: String, name: String, kind: Kind) {
+        self.id = id
+        self.name = name
+        self.kind = kind
+    }
+
     public static let local = Workspace(id: "local-default", name: "Local", kind: .local)
 }
