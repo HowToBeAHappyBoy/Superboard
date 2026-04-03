@@ -19,6 +19,7 @@ This project is still early and macOS-first. The goal is a fast picker with soli
 Download the latest `.dmg` (or `.zip`) from [GitHub Releases](https://github.com/HowToBeAHappyBoy/Superboard/releases).
 
 If macOS blocks the first launch, use Finder → right-click the app → Open, or allow it in System Settings → Privacy & Security.
+If you see “can’t be opened” warnings, you may need to click “Open Anyway” in System Settings → Privacy & Security.
 
 ## Features
 
