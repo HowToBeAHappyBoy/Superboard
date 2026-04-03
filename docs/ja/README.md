@@ -1,3 +1,7 @@
+[English](../README.md) | [한국어](../ko/README.md) | 日本語
+
+<img src="../assets/icon.png" alt="Superboard icon" width="72" />
+
 # Superboard
 
 SuperboardはmacOSのメニューバーで動くクリップボード履歴アプリです。
@@ -40,4 +44,3 @@ scripts/build-dmg-pretty.sh
 ## 権限
 
 Superboardは、フォーカス中のアプリに貼り付けるためにAccessibility権限を使います。
-

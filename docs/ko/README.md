@@ -1,3 +1,7 @@
+[English](../README.md) | 한국어 | [日本語](../ja/README.md)
+
+<img src="../assets/icon.png" alt="Superboard icon" width="72" />
+
 # Superboard
 
 Superboard는 macOS 메뉴바에서 동작하는 클립보드 히스토리 앱입니다.
@@ -40,4 +44,3 @@ scripts/build-dmg-pretty.sh
 ## 권한
 
 Superboard는 현재 포커스된 앱에 붙여넣기 위해 Accessibility 권한을 사용합니다.
-

@@ -1,18 +1,14 @@
-# Superboard
+English | [한국어](docs/ko/README.md) | [日本語](docs/ja/README.md)
 
-![Superboard icon](docs/assets/icon.png)
+<img src="docs/assets/icon.png" alt="Superboard icon" width="72" />
+
+# Superboard
 
 Superboard is a macOS menu bar clipboard history app.
 
 Copy something, press Cmd+Shift+V, pick an item, and it pastes into the focused app.
 
 This project is still early and macOS-first. The goal is a fast picker with solid support for text, images, and files, built around a keyboard-first workflow.
-
-## Documentation
-
-- English: this README
-- Korean: [docs/ko/README.md](docs/ko/README.md)
-- Japanese: [docs/ja/README.md](docs/ja/README.md)
 
 ## Features
 
