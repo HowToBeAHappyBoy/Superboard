@@ -1,31 +1,50 @@
+# Superboard
+
+![Superboard icon](docs/assets/icon.png)
+
 Superboard is a macOS menu bar clipboard history app.
 
-Copy something, press Command Shift V, pick an item, and it pastes into the focused app.
+Copy something, press Cmd+Shift+V, pick an item, and it pastes into the focused app.
 
-This project is early and macOS first. It focuses on a fast picker, support for text, images, and files, and a keyboard first workflow.
+This project is still early and macOS-first. The goal is a fast picker with solid support for text, images, and files, built around a keyboard-first workflow.
 
-Downloads and docs
+## Documentation
 
-You can build from source, or download a DMG from GitHub Releases if one is available.
+- English: this README
+- Korean: [docs/ko/README.md](docs/ko/README.md)
+- Japanese: [docs/ja/README.md](docs/ja/README.md)
 
-Documentation lives in docs/README.md, with Korean and Japanese versions linked there.
+## Features
 
-Build and run
+- Clipboard history for text, images, and files
+- Global hotkey (default: Cmd+Shift+V)
+- Keyboard navigation and immediate paste
+- Settings for picker size, history size, shortcut, launch at login, and "virtual clipboard"
+
+## Build and run
 
 SwiftPM commands should work on a typical macOS dev setup.
 
+```sh
 swift test
 swift run SuperboardMacApp
+```
 
-If SwiftPM is broken on your machine, there are scripts that build with xcrun swiftc.
+If SwiftPM is broken on your machine, there are scripts that build with `xcrun swiftc`.
 
+```sh
 scripts/dev-run.sh
+```
 
-Packaging
+## Packaging
 
-scripts/build-zip.sh produces dist/Superboard-macos.zip.
-scripts/build-dmg-pretty.sh produces dist/Superboard.dmg.
+```sh
+scripts/build-zip.sh
+scripts/build-dmg-pretty.sh
+```
 
-Permissions
+Output goes into `dist/` (ignored by git).
+
+## Permissions
 
 Superboard uses Accessibility so it can paste into the currently focused app.

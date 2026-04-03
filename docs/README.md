@@ -1,12 +1,11 @@
-Superboard documentation
+# Docs
 
-English documentation is in the repository root README.md.
+- English: [../README.md](../README.md)
+- Korean: [ko/README.md](ko/README.md)
+- Japanese: [ja/README.md](ja/README.md)
 
-Korean documentation is in docs/ko/README.md.
+Other notes:
 
-Japanese documentation is in docs/ja/README.md.
-
-Manual QA checklist is in docs/manual-qa/2026-04-02-superboard-macos-mvp-checklist.md.
-
-Design notes are in docs/design/clipboard-design.md.
+- Manual QA checklist: [manual-qa/2026-04-02-superboard-macos-mvp-checklist.md](manual-qa/2026-04-02-superboard-macos-mvp-checklist.md)
+- Design notes: [design/clipboard-design.md](design/clipboard-design.md)
 
