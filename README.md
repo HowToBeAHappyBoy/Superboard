@@ -1,6 +1,6 @@
-English | [한국어](docs/ko/README.md) | [日本語](docs/ja/README.md)
+English | [한국어](README_KO.md) | [日本語](README_JA.md)
 
-<img src="docs/assets/icon.png" alt="Superboard icon" width="72" />
+<img src="assets/icon.png" alt="Superboard icon" width="72" />
 
 # Superboard
 
