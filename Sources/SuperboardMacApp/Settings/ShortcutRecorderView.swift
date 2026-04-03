@@ -3,6 +3,7 @@ import SwiftUI
 
 struct ShortcutRecorderView: View {
     @Binding var shortcut: HotKeyShortcut
+    let bundle: Bundle
 
     @State private var isRecording = false
     @State private var eventMonitor: Any?
@@ -14,7 +15,11 @@ struct ShortcutRecorderView: View {
 
                 Spacer(minLength: 12)
 
-                Button(isRecording ? "녹화 취소" : "단축키 변경") {
+                Button(
+                    isRecording
+                        ? L10n.tr("shortcut_recorder.cancel_recording", bundle: bundle)
+                        : L10n.tr("shortcut_recorder.change", bundle: bundle)
+                ) {
                     if isRecording {
                         stopRecording()
                     } else {
@@ -30,7 +35,15 @@ struct ShortcutRecorderView: View {
                     .fill(isRecording ? Color.orange : Color.green)
                     .frame(width: 8, height: 8)
 
-                Text(isRecording ? "새 단축키를 입력하세요. ESC로 취소할 수 있습니다." : "현재 단축키: \(shortcut.displayString)")
+                Text(
+                    isRecording
+                        ? L10n.tr("shortcut_recorder.prompt.recording", bundle: bundle)
+                        : L10n.trFormat(
+                            "shortcut_recorder.prompt.current_format",
+                            bundle: bundle,
+                            args: [shortcut.displayString]
+                        )
+                )
                     .font(.caption)
                     .foregroundStyle(isRecording ? .primary : .secondary)
             }
@@ -53,7 +66,7 @@ struct ShortcutRecorderView: View {
     private var shortcutBadge: some View {
         Group {
             if isRecording {
-                Text("입력 대기 중")
+                Text(L10n.tr("shortcut_recorder.recording.waiting", bundle: bundle))
                     .font(.system(.body, design: .monospaced))
                     .foregroundStyle(Color.accentColor)
             } else {

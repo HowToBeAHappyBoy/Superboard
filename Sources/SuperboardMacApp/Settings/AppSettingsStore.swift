@@ -23,6 +23,14 @@ final class AppSettingsStore: ObservableObject {
         didSet { saveBool(useVirtualClipboard, key: Keys.useVirtualClipboard) }
     }
 
+    @Published var appLanguage: AppLanguage {
+        didSet { saveCodable(appLanguage, key: Keys.appLanguage) }
+    }
+
+    @Published var hideOnboarding: Bool {
+        didSet { saveBool(hideOnboarding, key: Keys.hideOnboarding) }
+    }
+
     init(userDefaults: UserDefaults = .standard) {
         self.userDefaults = userDefaults
 
@@ -40,6 +48,30 @@ final class AppSettingsStore: ObservableObject {
 
         self.launchAtLogin = userDefaults.bool(forKey: Keys.launchAtLogin)
         self.useVirtualClipboard = userDefaults.bool(forKey: Keys.useVirtualClipboard)
+
+        self.appLanguage = Self.loadCodable(
+            AppLanguage.self,
+            from: userDefaults,
+            key: Keys.appLanguage
+        ) ?? .system
+
+        self.hideOnboarding = userDefaults.bool(forKey: Keys.hideOnboarding)
+    }
+
+    var resolvedLanguage: ResolvedLanguage {
+        LanguageResolver.resolve(appLanguage)
+    }
+
+    var localizationBundle: Bundle {
+        LocalizationBundle.bundle(for: resolvedLanguage)
+    }
+
+    func localized(_ key: String) -> String {
+        L10n.tr(key, bundle: localizationBundle)
+    }
+
+    func localizedFormat(_ key: String, _ args: CVarArg...) -> String {
+        L10n.trFormat(key, bundle: localizationBundle, args: args)
     }
 
     // MARK: - Private
@@ -50,6 +82,8 @@ final class AppSettingsStore: ObservableObject {
         static let hotKeyShortcut = "superboard.settings.hotKeyShortcut"
         static let launchAtLogin = "superboard.settings.launchAtLogin"
         static let useVirtualClipboard = "superboard.settings.useVirtualClipboard"
+        static let appLanguage = "superboard.settings.appLanguage"
+        static let hideOnboarding = "superboard.settings.hideOnboarding"
     }
 
     private let userDefaults: UserDefaults
@@ -83,4 +117,3 @@ final class AppSettingsStore: ObservableObject {
         }
     }
 }
-

@@ -108,6 +108,14 @@ if [[ -f "${icon_icns}" ]]; then
   cp -f "${icon_icns}" "${bundle_path_tmp}/Contents/Resources/AppIcon.icns"
 fi
 
+# Copy localization resources (Localizable.strings in *.lproj).
+localization_src="${repo_root}/Sources/SuperboardMacApp/Resources"
+if [[ -d "${localization_src}" ]]; then
+  while IFS= read -r -d '' lproj_dir; do
+    cp -R "${lproj_dir}" "${bundle_path_tmp}/Contents/Resources/"
+  done < <(find "${localization_src}" -maxdepth 1 -type d -name "*.lproj" -print0)
+fi
+
 # Ad-hoc sign so the app bundle is structurally code-signed (not notarized).
 if command -v codesign >/dev/null 2>&1; then
   codesign --force --deep --sign - "${bundle_path_tmp}" >/dev/null 2>&1 || true

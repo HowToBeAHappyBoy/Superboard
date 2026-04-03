@@ -17,6 +17,9 @@ let package = Package(
             name: "SuperboardMacApp",
             dependencies: ["SuperboardCore"],
             path: "Sources/SuperboardMacApp",
+            resources: [
+                .process("Resources"),
+            ],
             linkerSettings: [
                 .linkedFramework("AppKit"),
                 .linkedFramework("ApplicationServices"),

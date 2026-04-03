@@ -3,22 +3,22 @@ import Combine
 import SwiftUI
 
 @MainActor
-final class SettingsWindowController: NSWindowController {
+final class OnboardingWindowController: NSWindowController {
     private var cancellables: Set<AnyCancellable> = []
 
-    init(settings: AppSettingsStore) {
-        let view = SettingsView(settings: settings)
+    init(settings: AppSettingsStore, onDone: @escaping () -> Void) {
+        let view = OnboardingView(settings: settings, onDone: onDone)
         let hostingController = NSHostingController(rootView: view)
 
         let window = NSWindow(contentViewController: hostingController)
-        window.title = L10n.tr("settings.window.title", bundle: settings.localizationBundle)
+        window.title = L10n.tr("onboarding.window.title", bundle: settings.localizationBundle)
         window.styleMask = [.titled, .closable]
         window.isReleasedWhenClosed = false
         window.titleVisibility = .hidden
         window.titlebarAppearsTransparent = true
         window.isMovableByWindowBackground = true
-        window.setContentSize(NSSize(width: 520, height: 420))
-        window.minSize = NSSize(width: 520, height: 420)
+        window.setContentSize(NSSize(width: 560, height: 440))
+        window.minSize = NSSize(width: 560, height: 440)
         window.center()
 
         super.init(window: window)
@@ -28,7 +28,7 @@ final class SettingsWindowController: NSWindowController {
             .sink { [weak self] newLanguage in
                 let resolved = LanguageResolver.resolve(newLanguage)
                 let bundle = LocalizationBundle.bundle(for: resolved)
-                self?.window?.title = L10n.tr("settings.window.title", bundle: bundle)
+                self?.window?.title = L10n.tr("onboarding.window.title", bundle: bundle)
             }
             .store(in: &cancellables)
     }
