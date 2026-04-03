@@ -1,26 +1,25 @@
-Superboard is a macOS menu bar clipboard history app.
+SuperboardはmacOSのメニューバーで動くクリップボード履歴アプリです。
 
-Copy something, press Command Shift V, pick an item, and it pastes into the focused app.
+何かをコピーしてからCommand Shift Vを押すとピッカーが開き、項目を選ぶと現在フォーカスされているアプリに貼り付けます。
 
-This project is still early and macOS first. It supports text, images, and files, and it is built around a fast keyboard first picker.
+まだ初期段階で、まずはmacOS向けに作っています。テキスト、画像、ファイルのコピーを扱い、キーボードだけで素早く選んで貼り付けることを目標にしています。
 
-Build and run
+ビルドと実行
 
-On a typical macOS dev setup you can run it with SwiftPM.
+一般的なmacOSの開発環境ではSwiftPMで実行できます。
 
 swift test
 swift run SuperboardMacApp
 
-If SwiftPM is broken on your machine, there is a fallback build script based on xcrun swiftc.
+SwiftPMが壊れている環境向けに、xcrun swiftcベースのスクリプトも入っています。
 
 scripts/dev-run.sh
 
-Packaging
+パッケージング
 
-scripts/build-zip.sh creates dist/Superboard-macos.zip.
-scripts/build-dmg-pretty.sh creates dist/Superboard.dmg.
+scripts/build-zip.shはdist/Superboard-macos.zipを作ります。
+scripts/build-dmg-pretty.shはdist/Superboard.dmgを作ります。
 
-Permissions
+権限
 
-Superboard uses Accessibility so it can paste into the currently focused app.
-
+Superboardは、フォーカス中のアプリに貼り付けるためにAccessibility権限を使います。
