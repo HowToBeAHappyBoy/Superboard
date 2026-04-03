@@ -1,2 +1,6 @@
 .build/
 .devbuild/
+.superpowers/
+dist/
+.DS_Store
+.omx/

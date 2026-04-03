@@ -13,6 +13,11 @@ public final class PastePickerSession: ObservableObject {
         selectedIndex = items.isEmpty ? -1 : 0
     }
 
+    public func select(index: Int) {
+        guard visibleItems.indices.contains(index) else { return }
+        selectedIndex = index
+    }
+
     public func moveSelection(by offset: Int) {
         guard !visibleItems.isEmpty else { return }
         selectedIndex = max(0, min(visibleItems.count - 1, selectedIndex + offset))

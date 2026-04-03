@@ -19,6 +19,11 @@ final class MacClipboardWatcher {
         }
     }
 
+    func stop() {
+        timer?.invalidate()
+        timer = nil
+    }
+
     private func poll() {
         guard pasteboard.changeCount != changeCount else { return }
         changeCount = pasteboard.changeCount

@@ -27,6 +27,14 @@ app_sources=(
   "${repo_root}/Sources/SuperboardMacApp/App/SuperboardApp.swift"
   "${repo_root}/Sources/SuperboardMacApp/App/AppCoordinator.swift"
   "${repo_root}/Sources/SuperboardMacApp/MenuBar/MenuBarController.swift"
+  "${repo_root}/Sources/SuperboardMacApp/Support/DebugLog.swift"
+  "${repo_root}/Sources/SuperboardMacApp/Support/MenuBarIcon.swift"
+  "${repo_root}/Sources/SuperboardMacApp/Settings/HotKeyShortcut.swift"
+  "${repo_root}/Sources/SuperboardMacApp/Settings/AppSettingsStore.swift"
+  "${repo_root}/Sources/SuperboardMacApp/Settings/LoginItemManager.swift"
+  "${repo_root}/Sources/SuperboardMacApp/Settings/ShortcutRecorderView.swift"
+  "${repo_root}/Sources/SuperboardMacApp/Settings/SettingsView.swift"
+  "${repo_root}/Sources/SuperboardMacApp/Settings/SettingsWindowController.swift"
   "${repo_root}/Sources/SuperboardMacApp/Platform/Hotkey/GlobalHotKeyMonitor.swift"
   "${repo_root}/Sources/SuperboardMacApp/Platform/Permissions/AccessibilityPermissionManager.swift"
   "${repo_root}/Sources/SuperboardMacApp/Platform/Clipboard/MacPasteboardReader.swift"
@@ -80,11 +88,14 @@ echo "[dev-build] Build SuperboardMacApp executable..."
   xcrun swiftc \
     -target "${target_triple}" \
     -module-cache-path "${module_cache_dir}" \
-    -o "${out_dir}/SuperboardMacApp" \
+    -o "${out_dir}/SuperboardMacApp.tmp.$$" \
     -framework AppKit \
     -framework ApplicationServices \
     -framework Carbon \
+    -framework ServiceManagement \
     ./*.o
 )
+
+mv -f "${out_dir}/SuperboardMacApp.tmp.$$" "${out_dir}/SuperboardMacApp"
 
 echo "[dev-build] Output: ${out_dir}/SuperboardMacApp"
