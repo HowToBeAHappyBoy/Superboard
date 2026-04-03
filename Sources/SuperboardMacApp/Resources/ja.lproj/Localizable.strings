@@ -1,0 +1,41 @@
+"menu.settings" = "設定…";
+"menu.quit" = "Superboard を終了";
+
+"settings.window.title" = "Superboard 設定";
+"settings.header.title" = "Superboard 設定";
+"settings.header.subtitle" = "履歴、ショートカット、起動動作、クリップボード動作を調整します。";
+"settings.section.general" = "一般";
+"settings.section.shortcuts" = "ショートカット";
+
+"settings.row.language.title" = "言語";
+"settings.row.language.subtitle" = "アプリの言語を選択します。";
+"settings.language.system" = "システム設定";
+"settings.language.english" = "英語";
+"settings.language.japanese" = "日本語";
+"settings.language.korean" = "韓国語";
+
+"settings.row.picker_display_limit.title" = "表示数";
+"settings.row.picker_display_limit.subtitle" = "ピッカーに表示する最近の項目数です。";
+"settings.row.history_store_limit.title" = "保存数";
+"settings.row.history_store_limit.subtitle" = "履歴として保存する最大件数です。";
+"settings.row.launch_at_login.title" = "ログイン時起動";
+"settings.row.launch_at_login.subtitle" = "ログイン時に Superboard を自動起動します。";
+"settings.row.virtual_clipboard.title" = "仮想クリップボード";
+"settings.row.virtual_clipboard.subtitle" = "履歴項目を貼り付けた後に元のクリップボードを復元します。";
+
+"settings.shortcut.open_picker.title" = "ピッカーを開く";
+"settings.shortcut.open_picker.subtitle" = "ショートカットで最近の項目ピッカーを開きます。";
+
+"shortcut_recorder.change" = "ショートカットを変更";
+"shortcut_recorder.cancel_recording" = "キャンセル";
+"shortcut_recorder.prompt.recording" = "新しいショートカットを入力してください。Esc でキャンセルできます。";
+"shortcut_recorder.prompt.current_format" = "現在のショートカット: %@";
+"shortcut_recorder.recording.waiting" = "入力待機中";
+
+"onboarding.window.title" = "ようこそ";
+"onboarding.title" = "Superboard へようこそ";
+"onboarding.subtitle" = "ショートカットと言語を設定して開始します。";
+"onboarding.section.shortcut" = "ショートカット";
+"onboarding.section.language" = "言語";
+"onboarding.done" = "完了";
+"onboarding.dont_show_again" = "次回から表示しない";

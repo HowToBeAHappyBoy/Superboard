@@ -17,13 +17,14 @@ final class AppCoordinator: NSObject, NSApplicationDelegate {
     private let permissionManager = AccessibilityPermissionManager()
     private let settings = AppSettingsStore()
     private var settingsWindowController: SettingsWindowController?
+    private var onboardingWindowController: OnboardingWindowController?
     private var cancellables: Set<AnyCancellable> = []
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         DebugLog.reset()
         DebugLog.write("AppCoordinator: didFinishLaunching")
         permissionManager.requestIfNeeded()
-        menuBarController = MenuBarController(onOpenSettings: { [weak self] in
+        menuBarController = MenuBarController(settings: settings, onOpenSettings: { [weak self] in
             self?.openSettings()
         })
 
@@ -53,6 +54,22 @@ final class AppCoordinator: NSObject, NSApplicationDelegate {
         DebugLog.write("AppCoordinator: hotkey register() returned")
 
         bindSettings()
+        maybeShowOnboarding()
+    }
+
+    private func maybeShowOnboarding() {
+        if settings.hideOnboarding {
+            return
+        }
+        if onboardingWindowController == nil {
+            onboardingWindowController = OnboardingWindowController(settings: settings, onDone: { [weak self] in
+                self?.onboardingWindowController?.close()
+                self?.onboardingWindowController = nil
+            })
+        }
+        NSApp.activate(ignoringOtherApps: true)
+        onboardingWindowController?.showWindow(nil)
+        onboardingWindowController?.window?.makeKeyAndOrderFront(nil)
     }
 
     private func openPicker() {

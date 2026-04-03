@@ -26,9 +26,9 @@ struct SettingsView: View {
                 .frame(width: 32, height: 32)
 
             VStack(alignment: .leading, spacing: 4) {
-                Text("Superboard 설정")
+                Text(settings.localized("settings.header.title"))
                     .font(.title2.weight(.semibold))
-                Text("히스토리, 단축키, 시작 동작, 클립보드 동작을 조정합니다.")
+                Text(settings.localized("settings.header.subtitle"))
                     .font(.callout)
                     .foregroundStyle(.secondary)
             }
@@ -40,9 +40,23 @@ struct SettingsView: View {
     private var generalSection: some View {
         GroupBox {
             VStack(alignment: .leading, spacing: 16) {
+                LanguagePickerRow(
+                    title: settings.localized("settings.row.language.title"),
+                    subtitle: settings.localized("settings.row.language.subtitle"),
+                    selection: $settings.appLanguage,
+                    options: [
+                        (.system, settings.localized("settings.language.system")),
+                        (.korean, settings.localized("settings.language.korean")),
+                        (.japanese, settings.localized("settings.language.japanese")),
+                        (.english, settings.localized("settings.language.english")),
+                    ]
+                )
+
+                Divider()
+
                 StepperSettingRow(
-                    title: "표시 개수",
-                    subtitle: "픽커에 보여줄 최근 항목 수입니다.",
+                    title: settings.localized("settings.row.picker_display_limit.title"),
+                    subtitle: settings.localized("settings.row.picker_display_limit.subtitle"),
                     value: $settings.pickerDisplayLimit,
                     range: 1...50
                 )
@@ -50,8 +64,8 @@ struct SettingsView: View {
                 Divider()
 
                 StepperSettingRow(
-                    title: "저장 개수",
-                    subtitle: "앱이 내부에 보관할 히스토리의 최대 개수입니다.",
+                    title: settings.localized("settings.row.history_store_limit.title"),
+                    subtitle: settings.localized("settings.row.history_store_limit.subtitle"),
                     value: $settings.historyStoreLimit,
                     range: 1...500
                 )
@@ -59,20 +73,20 @@ struct SettingsView: View {
                 Divider()
 
                 ToggleSettingRow(
-                    title: "시작 시 자동실행",
-                    subtitle: "로그인할 때 Superboard를 자동으로 실행합니다.",
+                    title: settings.localized("settings.row.launch_at_login.title"),
+                    subtitle: settings.localized("settings.row.launch_at_login.subtitle"),
                     isOn: $settings.launchAtLogin
                 )
 
                 ToggleSettingRow(
-                    title: "가상 클립보드",
-                    subtitle: "선택 후 붙여넣기 뒤 원래 클립보드를 복원합니다.",
+                    title: settings.localized("settings.row.virtual_clipboard.title"),
+                    subtitle: settings.localized("settings.row.virtual_clipboard.subtitle"),
                     isOn: $settings.useVirtualClipboard
                 )
             }
             .padding(.vertical, 2)
         } label: {
-            Text("기본")
+            Text(settings.localized("settings.section.general"))
                 .font(.headline)
         }
     }
@@ -81,18 +95,18 @@ struct SettingsView: View {
         GroupBox {
             VStack(alignment: .leading, spacing: 14) {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("픽커 열기")
+                    Text(settings.localized("settings.shortcut.open_picker.title"))
                         .font(.body.weight(.medium))
-                    Text("현재 단축키를 누르면 최근 항목 픽커가 열립니다.")
+                    Text(settings.localized("settings.shortcut.open_picker.subtitle"))
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
 
-                ShortcutRecorderView(shortcut: $settings.hotKeyShortcut)
+                ShortcutRecorderView(shortcut: $settings.hotKeyShortcut, bundle: settings.localizationBundle)
             }
             .padding(.vertical, 2)
         } label: {
-            Text("단축키")
+            Text(settings.localized("settings.section.shortcuts"))
                 .font(.headline)
         }
     }

@@ -3,22 +3,22 @@ import Combine
 import SwiftUI
 
 @MainActor
-final class SettingsWindowController: NSWindowController {
+final class OnboardingWindowController: NSWindowController {
     private var cancellables: Set<AnyCancellable> = []
 
-    init(settings: AppSettingsStore) {
-        let view = SettingsView(settings: settings)
+    init(settings: AppSettingsStore, onDone: @escaping () -> Void) {
+        let view = OnboardingView(settings: settings, onDone: onDone)
         let hostingController = NSHostingController(rootView: view)
 
         let window = NSWindow(contentViewController: hostingController)
-        window.title = settings.localized("settings.window.title")
+        window.title = settings.localized("onboarding.window.title")
         window.styleMask = [.titled, .closable]
         window.isReleasedWhenClosed = false
         window.titleVisibility = .hidden
         window.titlebarAppearsTransparent = true
         window.isMovableByWindowBackground = true
-        window.setContentSize(NSSize(width: 520, height: 420))
-        window.minSize = NSSize(width: 520, height: 420)
+        window.setContentSize(NSSize(width: 560, height: 440))
+        window.minSize = NSSize(width: 560, height: 440)
         window.center()
 
         super.init(window: window)
@@ -27,7 +27,7 @@ final class SettingsWindowController: NSWindowController {
             .removeDuplicates()
             .sink { [weak self, weak settings] _ in
                 guard let self, let settings else { return }
-                self.window?.title = settings.localized("settings.window.title")
+                self.window?.title = settings.localized("onboarding.window.title")
             }
             .store(in: &cancellables)
     }
@@ -37,3 +37,4 @@ final class SettingsWindowController: NSWindowController {
         fatalError("init(coder:) has not been implemented")
     }
 }
+

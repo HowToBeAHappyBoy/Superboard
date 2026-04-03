@@ -1,0 +1,41 @@
+"menu.settings" = "Settings…";
+"menu.quit" = "Quit Superboard";
+
+"settings.window.title" = "Superboard Settings";
+"settings.header.title" = "Superboard Settings";
+"settings.header.subtitle" = "Adjust history, shortcuts, launch behavior, and clipboard behavior.";
+"settings.section.general" = "General";
+"settings.section.shortcuts" = "Shortcuts";
+
+"settings.row.language.title" = "Language";
+"settings.row.language.subtitle" = "Choose the app language.";
+"settings.language.system" = "System Default";
+"settings.language.english" = "English";
+"settings.language.japanese" = "Japanese";
+"settings.language.korean" = "Korean";
+
+"settings.row.picker_display_limit.title" = "Visible Items";
+"settings.row.picker_display_limit.subtitle" = "How many recent items to show in the picker.";
+"settings.row.history_store_limit.title" = "Stored Items";
+"settings.row.history_store_limit.subtitle" = "Maximum number of items kept in history.";
+"settings.row.launch_at_login.title" = "Launch at Login";
+"settings.row.launch_at_login.subtitle" = "Automatically start Superboard when you log in.";
+"settings.row.virtual_clipboard.title" = "Virtual Clipboard";
+"settings.row.virtual_clipboard.subtitle" = "Restore the original clipboard after pasting a selected item.";
+
+"settings.shortcut.open_picker.title" = "Open Picker";
+"settings.shortcut.open_picker.subtitle" = "Press the shortcut to open the recent items picker.";
+
+"shortcut_recorder.change" = "Change Shortcut";
+"shortcut_recorder.cancel_recording" = "Cancel";
+"shortcut_recorder.prompt.recording" = "Press a new shortcut. Press Esc to cancel.";
+"shortcut_recorder.prompt.current_format" = "Current shortcut: %@";
+"shortcut_recorder.recording.waiting" = "Waiting for input";
+
+"onboarding.window.title" = "Welcome";
+"onboarding.title" = "Welcome to Superboard";
+"onboarding.subtitle" = "Set your shortcut and language to get started.";
+"onboarding.section.shortcut" = "Shortcut";
+"onboarding.section.language" = "Language";
+"onboarding.done" = "Done";
+"onboarding.dont_show_again" = "Don’t show again";

@@ -1,0 +1,41 @@
+"menu.settings" = "설정…";
+"menu.quit" = "Superboard 종료";
+
+"settings.window.title" = "Superboard 설정";
+"settings.header.title" = "Superboard 설정";
+"settings.header.subtitle" = "히스토리, 단축키, 시작 동작, 클립보드 동작을 조정합니다.";
+"settings.section.general" = "기본";
+"settings.section.shortcuts" = "단축키";
+
+"settings.row.language.title" = "언어";
+"settings.row.language.subtitle" = "앱 언어를 선택합니다.";
+"settings.language.system" = "시스템 기본";
+"settings.language.english" = "영어";
+"settings.language.japanese" = "일본어";
+"settings.language.korean" = "한국어";
+
+"settings.row.picker_display_limit.title" = "표시 개수";
+"settings.row.picker_display_limit.subtitle" = "픽커에 보여줄 최근 항목 수입니다.";
+"settings.row.history_store_limit.title" = "저장 개수";
+"settings.row.history_store_limit.subtitle" = "앱이 내부에 보관할 히스토리의 최대 개수입니다.";
+"settings.row.launch_at_login.title" = "시작 시 자동실행";
+"settings.row.launch_at_login.subtitle" = "로그인할 때 Superboard를 자동으로 실행합니다.";
+"settings.row.virtual_clipboard.title" = "가상 클립보드";
+"settings.row.virtual_clipboard.subtitle" = "선택 후 붙여넣기 뒤 원래 클립보드를 복원합니다.";
+
+"settings.shortcut.open_picker.title" = "픽커 열기";
+"settings.shortcut.open_picker.subtitle" = "현재 단축키를 누르면 최근 항목 픽커가 열립니다.";
+
+"shortcut_recorder.change" = "단축키 변경";
+"shortcut_recorder.cancel_recording" = "녹화 취소";
+"shortcut_recorder.prompt.recording" = "새 단축키를 입력하세요. ESC로 취소할 수 있습니다.";
+"shortcut_recorder.prompt.current_format" = "현재 단축키: %@";
+"shortcut_recorder.recording.waiting" = "입력 대기 중";
+
+"onboarding.window.title" = "환영합니다";
+"onboarding.title" = "Superboard에 오신 것을 환영합니다";
+"onboarding.subtitle" = "단축키와 언어를 설정하고 시작하세요.";
+"onboarding.section.shortcut" = "커맨드(단축키)";
+"onboarding.section.language" = "언어";
+"onboarding.done" = "시작하기";
+"onboarding.dont_show_again" = "다시 보지 않기";
