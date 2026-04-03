@@ -11,7 +11,7 @@ final class SettingsWindowController: NSWindowController {
         let hostingController = NSHostingController(rootView: view)
 
         let window = NSWindow(contentViewController: hostingController)
-        window.title = settings.localized("settings.window.title")
+        window.title = L10n.tr("settings.window.title", bundle: settings.localizationBundle)
         window.styleMask = [.titled, .closable]
         window.isReleasedWhenClosed = false
         window.titleVisibility = .hidden
@@ -25,9 +25,10 @@ final class SettingsWindowController: NSWindowController {
 
         settings.$appLanguage
             .removeDuplicates()
-            .sink { [weak self, weak settings] _ in
-                guard let self, let settings else { return }
-                self.window?.title = settings.localized("settings.window.title")
+            .sink { [weak self] newLanguage in
+                let resolved = LanguageResolver.resolve(newLanguage)
+                let bundle = LocalizationBundle.bundle(for: resolved)
+                self?.window?.title = L10n.tr("settings.window.title", bundle: bundle)
             }
             .store(in: &cancellables)
     }

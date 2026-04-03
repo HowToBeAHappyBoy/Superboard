@@ -15,7 +15,7 @@ final class MenuBarController {
         statusItem.button?.image = MenuBarIcon.skateboardTemplateImage(pointSize: 18)
         statusItem.button?.imagePosition = .imageOnly
 
-        rebuildMenu()
+        rebuildMenu(bundle: settings.localizationBundle)
         bindSettings()
     }
 
@@ -23,10 +23,10 @@ final class MenuBarController {
         onOpenSettings()
     }
 
-    private func rebuildMenu() {
+    private func rebuildMenu(bundle: Bundle) {
         let menu = NSMenu()
         let settingsItem = NSMenuItem(
-            title: settings.localized("menu.settings"),
+            title: L10n.tr("menu.settings", bundle: bundle),
             action: #selector(openSettings),
             keyEquivalent: ","
         )
@@ -34,7 +34,7 @@ final class MenuBarController {
         menu.addItem(settingsItem)
         menu.addItem(.separator())
         menu.addItem(
-            withTitle: settings.localized("menu.quit"),
+            withTitle: L10n.tr("menu.quit", bundle: bundle),
             action: #selector(NSApplication.terminate(_:)),
             keyEquivalent: "q"
         )
@@ -44,8 +44,10 @@ final class MenuBarController {
     private func bindSettings() {
         settings.$appLanguage
             .removeDuplicates()
-            .sink { [weak self] _ in
-                self?.rebuildMenu()
+            .sink { [weak self] newLanguage in
+                let resolved = LanguageResolver.resolve(newLanguage)
+                let bundle = LocalizationBundle.bundle(for: resolved)
+                self?.rebuildMenu(bundle: bundle)
             }
             .store(in: &cancellables)
     }
